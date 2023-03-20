@@ -1,6 +1,5 @@
 import pickle
-from fastapi import FastAPI , HTTPException
-# importing another python file in which inputs to be taken are defined inside a class as variable
+from fastapi import FastAPI
 import json
 import uvicorn  # it is like a webserver for python
 import numpy as np
@@ -13,7 +12,7 @@ class predict(BaseModel):
     pregnancies: int
     glucose: float
     bloodpressure: float
-    skinthickness: int
+    skinthickness: float
     insulin: float
     bmi: float
     diabetespedigreefunction: float
@@ -29,7 +28,7 @@ with open("svc.pkl", "rb") as f:
 #Index
 @app.get('/')
 def index():
-    return {'hello' : "World"}
+    return {'Diabetes' : "Prediction"}
 
 #Predict
 @app.post("/predict")
@@ -43,14 +42,14 @@ async def predict_diabetes(data: predict):
         standardised_input = sc.fit_transform(data_list)
 
         # Make prediction using a trained model (clf)
-        results = int(clf.predict(standardised_input))
+        results = int(clf.predict(data_list))
         
         if results == 0:
-            return f"Prediction : {results} You are Healthy nigga"
+            return f"You are Healthy"
         elif results == 1:
-            return f"Prediction : {results} You have Diabetes , You gonna die"
+            return f"You have Diabetes"
     
-        # return json.dumps(int(results))
+        # return json.dumps(results)
     
     except Exception as e:
         # Return an appropriate error message if an exception occurs
