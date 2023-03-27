@@ -30,19 +30,20 @@ with open("svc.pkl", "rb") as f:
 def index():
     return {'Diabetes' : "Prediction"}
 
+
 #Predict
 @app.post("/predict")
 async def predict_diabetes(data: predict):
     try:
-        data_list = [[data.pregnancies, data.glucose, data.bloodpressure,
+        data_list = pd.DataFrame([data.pregnancies, data.glucose, data.bloodpressure,
                       data.skinthickness, data.insulin, data.bmi,
-                      data.diabetespedigreefunction, data.age]]
+                      data.diabetespedigreefunction, data.age])
         sc = StandardScaler()
         # Reshape into 2D array and standardize
         standardised_input = sc.fit_transform(data_list)
 
         # Make prediction using a trained model (clf)
-        results = int(clf.predict(data_list))
+        results = int(clf.predict(standardised_input.reshape(1, -1)))
         
         if results == 0:
             return f"You are Healthy"
