@@ -1,7 +1,5 @@
 import pickle
 from fastapi import FastAPI
-from fastapi.templating import Jinja2Templates
-import json
 import uvicorn  # it is like a webserver for python
 import numpy as np
 import pandas as pd
@@ -20,7 +18,6 @@ class predict(BaseModel):
     age: int
 
 app = FastAPI()
-templates = Jinja2Templates(directory="templates")
 
 with open("svc.pkl", "rb") as f:
     clf = pickle.load(f)
@@ -29,7 +26,7 @@ with open("svc.pkl", "rb") as f:
 #Index
 @app.get('/')
 def index():
-    return templates.TemplateResponse("index.html")
+    return {'message': 'Welcome to Diabetes Prediction API'}
 
 
 #Predict
