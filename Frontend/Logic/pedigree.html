@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Radio Buttons Example</title>
+</head>
+
+<body>
+
+    <h1>Radio Buttons Example</h1>
+
+    <!-- HTML for the radio buttons and Next button -->
+    <p>
+        <label>
+            <input type="radio" name="option" value="0"> Option 1 (0)
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="radio" name="option" value="0.850"> Option 2 (0.850)
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="radio" name="option" value="1.750"> Option 3 (1.750)
+        </label>
+    </p>
+  
+    <button id="nextButton">Next</button>
+
+    <script>
+        // Define a global variable to store the selected option value
+        let pedigree= null;
+
+        // Define a function to handle the click event of the "Next" button
+        function handleNextButtonClick() {
+            const options = document.getElementsByName("option");
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].checked) {
+                    pedigree = options[i].value;
+                    break;
+                }
+            }
+            console.log("Selected option value:", pedigree);
+        }
+
+        // Attach the handleNextButtonClick function to the "Next" button
+        const nextButton = document.getElementById("nextButton");
+        nextButton.addEventListener("click", handleNextButtonClick);
+    </script>
+
+</body>
+
+</html>

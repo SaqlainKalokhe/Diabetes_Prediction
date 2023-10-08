@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Input box Example</title>
+</head>
+
+<body>
+
+    <h1>Input box Example</h1>
+    <p>
+        <input type="text" id="inputBox">
+    </p>
+    <button type="button" id="nextButton">Next</button>
+
+    <script>
+        let pregnant;
+
+        function handleNextButtonClick() {
+            pregnant = document.getElementById("inputBox").value;
+            console.log("Input Value:", pregnant);
+        }
+
+        const nextButton = document.getElementById("nextButton");
+        nextButton.addEventListener("click", handleNextButtonClick);
+
+    </script>

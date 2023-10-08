@@ -1,0 +1,33 @@
+const data = {
+  pregnancy: 0,
+  glucose: 120,
+  bloodpressure: 120,
+  thickness: 23,
+  insulin: 90,
+  BMI: 26.5,
+  pedigree: 0.7,
+  age: 25,
+  
+};
+
+fetch('https://e4d0-103-210-145-159.ngrok-free.app/predict', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data)
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => {
+  console.log('API response:', data);
+  // Do something with the API response
+})
+.catch(error => {
+  console.error('Error:', error);
+  // Handle the error
+});

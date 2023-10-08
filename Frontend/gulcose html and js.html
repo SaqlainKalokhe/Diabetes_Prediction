@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page 4</title>
+</head>
+
+<body>
+    <h1>Select your blood glucose level:</h1>
+    <input type="radio" id="option1" name="glucose" value="option1">
+    <label for="option1">140-180 mg/dL</label><br>
+    <input type="radio" id="option2" name="glucose" value="option2">
+    <label for="option2">120-160 mg/dL</label><br>
+    <input type="radio" id="option3" name="glucose" value="option3">
+    <label for="option3">100-140 mg/dL</label><br>
+    <input type="radio" id="option4" name="glucose" value="option4">
+    <label for="option4">80-120 mg/dL</label><br>
+    <button onclick="glucoseLevel()">Next</button>
+
+    <script>
+        let glucose = null;
+
+        function glucoseLevel() {
+            let option1 = document.getElementById("option1");
+            let option2 = document.getElementById("option2");
+            let option3 = document.getElementById("option3");
+            let option4 = document.getElementById("option4");
+
+            if (option1.checked) {
+                glucose = Math.floor(Math.random() * (180 - 140 + 1)) + 140;
+            } else if (option2.checked) {
+                glucose = Math.floor(Math.random() * (160 - 120 + 1)) + 120;
+            } else if (option3.checked) {
+                glucose = Math.floor(Math.random() * (140 - 100 + 1)) + 100;
+            } else if (option4.checked) {
+                glucose = Math.floor(Math.random() * (120 - 80 + 1)) + 80;
+            }
+
+            window.location = "webpage5.html";
+        }
+    </script>
+</body>
+
+</html>
